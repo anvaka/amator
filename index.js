@@ -20,7 +20,12 @@ function animate(source, target, options) {
   var easing = (typeof options.easing === 'function') ? options.easing : animations[options.easing]
 
   // if nothing is specified, default to ease (similar to CSS animations)
-  if (!easing) easing = animations.ease
+  if (!easing) {
+    if (options.easing) {
+      console.warn('Unknown easing function in amator: ' + options.easing);
+    }
+    easing = animations.ease
+  }
 
   var step = typeof options.step === 'function' ? options.step : noop
   var done = typeof options.done === 'function' ? options.done : noop

@@ -16,5 +16,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/anvaka/amator"
+  },
+  "dependencies": {
+    "bezier-easing": "^2.0.3"
   }
 }

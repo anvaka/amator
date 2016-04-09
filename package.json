@@ -1,6 +1,6 @@
 {
   "name": "amator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny animation library",
   "main": "index.js",
   "scripts": {

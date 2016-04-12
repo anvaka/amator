@@ -38,7 +38,7 @@ function animate(source, target, options) {
     diff[key] = target[key] - source[key]
   })
 
-  var durationInMs = options.duration || 400
+  var durationInMs = typeof options.duration === 'number' ? options.duration : 400
   var durationInFrames = Math.max(1, durationInMs * 0.06) // 0.06 because 60 frames pers 1,000 ms
   var previousAnimationId
   var frame = 0

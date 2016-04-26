@@ -4,32 +4,39 @@ Tiny animation library.
 
 # usage
 
-Work in progress for better documentation.
-
 ``` js
 var animate = require('amator')
 var from = { x: 0 }
 var to = { x: 42 }
+
 // This will animate from.x from 0 to 42 in 400ms, using cubic bezier easing
 // function (same effect as default CSS `ease` function)
 animate(from, to)
-
-// More options
-var animation = animate(from, to, {
-  duration: 800, // change duration from 400ms to 800ms
-  easing: 'linear', // Use linear easing
-  step: function(object) {
-    // print value on each animation frame
-    console.log(object.x)
-  },
-  done: function() {
-    console.log('All done')
-  }
-})
-
-// if for some reason you don't need animation to continue, you can cancel it:
-animation.cancel()
 ```
+
+Overall the signature of the `animate()` function:
+
+```js
+animate(fromObj, toObj, options)
+```
+
+## options
+
+This is a hash dictionary with the following keys:
+
+* `duration` - sets animation duration in milliseconds. Default value is 400ms;
+* `easing` - Easing function. Can accept predefined value similar to CSS animations:
+  `ease`, `easeIn`, `easeOut`, `easeInOut`, `linear`;
+* `step(fromObj)` - a function callback that is called after each animation frame.
+  the only argument to this function is `fromObj` that has current animation values.
+* `done()` - a function callback that is called when animation is finished.
+
+## return value
+
+The return value of the `animate` is an object, which has just one key:
+
+* `cancel()` - if you want to cancel animation before it completes, you can call
+this method.
 
 # license
 

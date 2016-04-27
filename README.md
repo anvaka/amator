@@ -26,7 +26,9 @@ This is a hash dictionary with the following keys:
 
 * `duration` - sets animation duration in milliseconds. Default value is 400ms;
 * `easing` - Easing function. Can accept predefined value similar to CSS animations:
-  `ease`, `easeIn`, `easeOut`, `easeInOut`, `linear`;
+  `ease`, `easeIn`, `easeOut`, `easeInOut`, `linear`; NOTE: You can also have a
+  custom function instead of a string value. The function should take a single
+  argument `t` from range [0..1] and return value from 0 to 1.
 * `step(fromObj)` - a function callback that is called after each animation frame.
   the only argument to this function is `fromObj` that has current animation values.
 * `done()` - a function callback that is called when animation is finished.

@@ -4,7 +4,8 @@
   "description": "Tiny animation library",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tap test/*.js",
+    "build": "browserify -s amator ./index.js > dist/amator.js && uglifyjs dist/amator.js > dist/amator.min.js"
   },
   "keywords": [
     "animation",

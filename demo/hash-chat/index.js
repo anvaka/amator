@@ -11,9 +11,8 @@ inputText.addEventListener('keyup', updateQueryState);
 inputText.addEventListener('blur', updateQueryState);
 inputText.addEventListener('keydown', updateQueryState);
 
-document.addEventListener('click', function() {
+document.body.addEventListener('click', function() {
   inputText.focus();
-
 })
 
 function updateQueryState() {

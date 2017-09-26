@@ -5,8 +5,27 @@ var qs = queryState({
   text: 'hello world'
 });
 
+
+var inputText = document.getElementById('text-input');
+inputText.addEventListener('keyup', updateQueryState);
+inputText.addEventListener('blur', updateQueryState);
+inputText.addEventListener('keydown', updateQueryState);
+
+document.addEventListener('click', function() {
+  inputText.focus();
+
+})
+
+function updateQueryState() {
+  qs.set('text', inputText.value);
+}
+function updateInputBox(appState) {
+  inputText.value = appState.name || '';
+}
+
 qs.onChange(function(appState) {
   animateText(appState.text);
+  updateInputBox(appState.text);
 });
 
 var scene = document.querySelector('.scene');

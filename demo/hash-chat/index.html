@@ -5,12 +5,14 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge' >
   <meta charset="utf-8">
   <title>Hash chat - communicate via query string with style</title>
+  <meta name="Description" content="Chat via query string">
+
   <style type="text/css" media="screen">
   * {
     box-sizing: border-box;
   }
   .scene {
-    font-size: 24px;
+    font-size: 32px;
   }
   .letter {
     display: inline-block;
@@ -35,11 +37,61 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .edit-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  input#text-input {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    background: transparent;
+    opacity: 0;
+    color: white;
+    width: 500px;
+    border-width: 0px;
+    border-bottom: 1px dotted #3399aa;
+    text-align: center;
+    font-size: 34px;
+    outline: none;
+    margin-top: 22px;
+  }
+
+  input#text-input:focus {
+    opacity: 1;
+  }
+
+  .help-text {
+    opacity: 0;
+    color: #444;
+    padding-top: 3px;
+  }
+  input#text-input:focus ~ .help-text {
+    opacity: 1;
+  }
+
+  @media (max-width: 740px) {
+    input#text-input:focus {
+      width: 100%;
+    }
+  }
   </style>
 </head>
 <body>
   <div class='scene'></div>
-  
+  <div class='edit-text'>
+    <input type='text' id='text-input'></input>
+    <div class='help-text'>
+      Enter your response and send them the link.
+    </div>
+  </div>
   <script src='bundle.js'></script>
 </body>
 </html>

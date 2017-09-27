@@ -5,7 +5,7 @@ var qs = queryState({
   text: 'hello world'
 });
 
-
+var helpToken = 0;
 var currentUrl = document.getElementById('current-url');
 var inputText = document.getElementById('text-input');
 inputText.addEventListener('keyup', updateQueryState);
@@ -90,7 +90,8 @@ function scheduleAnimation(dom, translateDirection) {
         duration: fadeOutDuration,
         step: function(v) {
           dom.style.transform = 'translateX(' + v.left + 'px)';
-        } 
+        },
+        done: scheduleShowHelp
     });
   }
   
@@ -106,4 +107,16 @@ function scheduleAnimation(dom, translateDirection) {
         } 
       });
   }
+}
+
+function scheduleShowHelp() {
+  if (helpToken) {
+    clearTimeout(helpToken);
+    helpToken = 0;
+  }
+  helpToken = setTimeout(function() {
+    inputText.value = qs.get('text');
+    inputText.focus();
+    inputText.select();
+  }, 1000);
 }

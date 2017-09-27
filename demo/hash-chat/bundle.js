@@ -6,20 +6,31 @@ var qs = queryState({
   text: 'hello world'
 });
 
-
+var helpToken = 0;
+var currentUrl = document.getElementById('current-url');
 var inputText = document.getElementById('text-input');
 inputText.addEventListener('keyup', updateQueryState);
 inputText.addEventListener('blur', updateQueryState);
-inputText.addEventListener('keydown', updateQueryState);
+inputText.addEventListener('keydown', handleKeyDown);
 
-document.addEventListener('click', function() {
+document.body.addEventListener('click', function() {
   inputText.focus();
-
 })
+
+function handleKeyDown(e) {
+  updateQueryState();
+  if (e.which === 13) {
+    animateText(qs.get('text'));
+    currentUrl.focus();
+    currentUrl.select();
+  }
+}
 
 function updateQueryState() {
   qs.set('text', inputText.value);
+  currentUrl.value = window.location.href;
 }
+
 function updateInputBox(appState) {
   inputText.value = appState.name || '';
 }
@@ -80,7 +91,8 @@ function scheduleAnimation(dom, translateDirection) {
         duration: fadeOutDuration,
         step: function(v) {
           dom.style.transform = 'translateX(' + v.left + 'px)';
-        } 
+        },
+        done: scheduleShowHelp
     });
   }
   
@@ -98,6 +110,17 @@ function scheduleAnimation(dom, translateDirection) {
   }
 }
 
+function scheduleShowHelp() {
+  if (helpToken) {
+    clearTimeout(helpToken);
+    helpToken = 0;
+  }
+  helpToken = setTimeout(function() {
+    inputText.value = qs.get('text');
+    inputText.focus();
+    inputText.select();
+  }, 1000);
+}
 },{"../../index.js":7,"query-state":3}],2:[function(require,module,exports){
 module.exports = function(subject) {
   validateSubject(subject);

@@ -6,18 +6,30 @@ var qs = queryState({
 });
 
 
+var currentUrl = document.getElementById('current-url');
 var inputText = document.getElementById('text-input');
 inputText.addEventListener('keyup', updateQueryState);
 inputText.addEventListener('blur', updateQueryState);
-inputText.addEventListener('keydown', updateQueryState);
+inputText.addEventListener('keydown', handleKeyDown);
 
 document.body.addEventListener('click', function() {
   inputText.focus();
 })
 
+function handleKeyDown(e) {
+  updateQueryState();
+  if (e.which === 13) {
+    animateText(qs.get('text'));
+    currentUrl.focus();
+    currentUrl.select();
+  }
+}
+
 function updateQueryState() {
   qs.set('text', inputText.value);
+  currentUrl.value = window.location.href;
 }
+
 function updateInputBox(appState) {
   inputText.value = appState.name || '';
 }

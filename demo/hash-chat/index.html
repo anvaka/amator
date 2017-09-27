@@ -80,6 +80,11 @@
   input#text-input:focus ~ .help-text {
     opacity: 1;
   }
+  #current-url {
+    opacity: 0;
+    position: absolute;
+    left: -1000px;
+  }
 
   @media (max-width: 740px) {
     input#text-input:focus {
@@ -96,6 +101,7 @@
       Enter your response and send them the link.
     </div>
   </div>
+  <input id='current-url' tyle='text'></input>
   <script src='bundle.js'></script>
 </body>
 </html>

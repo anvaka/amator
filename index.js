@@ -15,6 +15,22 @@ module.exports.makeAggregateRaf = makeAggregateRaf;
 module.exports.sharedScheduler = makeAggregateRaf();
 
 
+/**
+ * Creates a new instance of animator. Animator uses
+ * interpolation function to change `source` object into
+ * `target` object.
+ * 
+ * Note: this method mutates `source` object properties.
+ * 
+ * @param {Object} source 
+ * @param {Object} target 
+ * @param {Object} options - animation configuration
+ * @param {Function} options.step - called on each animation step
+ * @param {Function} options.easing - easing function, which takes one 
+ * argument `t` in range [0, 1], and returns corresponding interpolation
+ * value.
+ * @param {Function} options.done - called when animation is over
+ */
 function animate(source, target, options) {
   var start = Object.create(null)
   var diff = Object.create(null)

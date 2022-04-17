@@ -4,7 +4,7 @@
   "description": "Tiny animation library",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*.js",
+    "test": "tap --branches=40 --lines=40 --statements=40 --functions=40 test/*.js",
     "build": "browserify -s amator ./index.js > dist/amator.js && uglifyjs dist/amator.js > dist/amator.min.js"
   },
   "keywords": [
@@ -22,6 +22,6 @@
     "bezier-easing": "^2.0.3"
   },
   "devDependencies": {
-    "tap": "^5.7.1"
+    "tap": "^16.0.1"
   }
 }
